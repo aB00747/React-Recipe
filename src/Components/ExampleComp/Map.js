@@ -30,6 +30,7 @@ export default function Map() {
     setIsClicked(true);
     setArr([]);
     setBoolean(false);
+    // set Input value 
     setInputValue("");
   };
 
