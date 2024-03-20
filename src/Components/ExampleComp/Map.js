@@ -25,7 +25,6 @@ export default function Map() {
   }
 
   const handleClear = () => {
-    console.log("isClicked", isClicked);
     setIsClicked(true);
     setArr([]);
     setBoolean(false);
