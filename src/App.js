@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+// import logo from './logo.svg';
+import React, { useState, useEffect } from "react";
 import './App.css';
+import NavBar from './Components/NavBar';
+import ListandKeys from './Components/ListandKeys';
+import Home from './Components/Home';
+import BasicExp from './Components/BasicExp';
+import Map from "./Components/ExampleComp/Map";
 
 function App() {
+  const list = [1, 2, 3, 4];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+            <NavBar />
+        <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/BasicExp' element={<BasicExp />} />
+            <Route path='/ListandKeys' element={<ListandKeys />} />
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/Map" element={<Map />} />
+        </Routes>
+      </Router>
+      {/* // <ListandKeys  props={list}/> */}
+    </>
   );
 }
 

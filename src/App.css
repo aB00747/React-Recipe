@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+
+.Link-style {
+  color: black;
+  text-decoration:none;
+}
+
+
+.bin {
+  width: 24px;
+  height: 24px;
+  fill: #ccc;
+  transition: fill 0.3s ease;
+}
+
+
+.bin.active {
+  fill: red;
+}
