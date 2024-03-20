@@ -1,11 +1,22 @@
 import { Button } from "bootstrap";
 import React, { useState, useEffect } from "react";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useSpring, animated } from "react-spring";
 
 export default function Map() {
   const [arr, setArr] = useState([]);
   const [boolean, setBoolean] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const springProps = useSpring({
+    transform: isClicked ? "scale(1.4)" : "scale(1)",
+    config: { tension: 300, friction: 20 }, // Animation configuration
+    onRest: () => setIsClicked(false), // Reset isClicked state after animation ends
+    from: { transform: "scale(1)" }, // Initial transform scale
+    immediate: !isClicked,
+  });
+
 
   function display(e) {
     let data = e.target.value;
@@ -14,7 +25,15 @@ export default function Map() {
   }
 
   const handleClear = () => {
+    console.log("isClicked", isClicked);
     // Clear the data
+    setIsClicked(true);
+
+    // setTimeout(
+    //   () => setIsClicked(isClicked),
+    //   1000
+    // );
+
     setArr([]);
     setBoolean(false);
   };
@@ -63,15 +82,18 @@ export default function Map() {
         </div>
 
         <div className="card">
-          <button
-            className="btn btn-light position-absolute top-0 end-0"
-            onClick={() => setBoolean(false)}
-          >
-            Clear
-          </button>
-          {/* <button className="btn btn-light position-absolute top-0 end-0 m-2" onClick={handleClear}>
-          <FontAwesomeIcon icon={faCheck} />
-        </button> */}
+          <div className="btn btn-light position-absolute top-0 end-0">
+            <animated.div
+              style={springProps}
+              onClick={handleClear}
+              className="trash-icon"
+            >
+              <FontAwesomeIcon
+                icon={faTrash}
+                className={isClicked ? "trash-icon" : "trash-icon clicked"}
+              />
+            </animated.div>
+          </div>
           <div className="card-header">Result (output)</div>
           <div className="card-body input-group mb-3">
             <h5 className="card-title input-group-text">Map</h5>

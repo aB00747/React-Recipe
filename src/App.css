@@ -52,6 +52,7 @@
 }
 
 
-.bin.active {
-  fill: red;
+.trash-icon {
+  /* fill: red; */
+  color: #993c3c;
 }
