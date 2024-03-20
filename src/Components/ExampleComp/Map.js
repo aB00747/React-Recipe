@@ -26,14 +26,7 @@ export default function Map() {
 
   const handleClear = () => {
     console.log("isClicked", isClicked);
-    // Clear the data
     setIsClicked(true);
-
-    // setTimeout(
-    //   () => setIsClicked(isClicked),
-    //   1000
-    // );
-
     setArr([]);
     setBoolean(false);
   };
