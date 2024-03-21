@@ -8,6 +8,7 @@ export default function Map() {
   const [arr, setArr] = useState([]);
   const [boolean, setBoolean] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const springProps = useSpring({
     transform: isClicked ? "scale(1.4)" : "scale(1)",
@@ -22,12 +23,14 @@ export default function Map() {
     let data = e.target.value;
     let newArr = data.split(" ");
     setArr(newArr);
+    setInputValue(data);
   }
 
   const handleClear = () => {
     setIsClicked(true);
     setArr([]);
     setBoolean(false);
+    setInputValue("");
   };
 
   // Conver the array to string
@@ -45,6 +48,7 @@ export default function Map() {
               placeholder="ball Cat Dog"
               aria-label="Recipient's username with two button addons"
               onChange={display}
+              value={inputValue}
             />
 
             <button
@@ -69,21 +73,15 @@ export default function Map() {
             placeholder="Username"
             aria-label="Username"
             aria-describedby="basic-addon1"
-            value={arrayAsString}
+            value={arrayAsString == "[]" ? "[  ]" : arrayAsString}
+            disabled
           />
         </div>
 
         <div className="card">
           <div className="btn btn-light position-absolute top-0 end-0">
-            <animated.div
-              style={springProps}
-              onClick={handleClear}
-              className="trash-icon"
-            >
-              <FontAwesomeIcon
-                icon={faTrash}
-                className={isClicked ? "trash-icon" : "trash-icon clicked"}
-              />
+            <animated.div style={springProps} onClick={handleClear} className="trash-icon" >
+              <FontAwesomeIcon title="Clear" icon={faTrash} />
             </animated.div>
           </div>
           <div className="card-header">Result (output)</div>
