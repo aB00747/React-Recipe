@@ -56,3 +56,13 @@
   /* fill: red; */
   color: #993c3c;
 }
+
+
+.error {
+  color: red;
+}
+
+.textCenter {
+  text-align: center;
+  padding-top: 10px;
+}
